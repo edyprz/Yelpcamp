@@ -14,15 +14,21 @@
 		</div>
 		<div class="collapse navbar-collapse  nav justify-content-end">
 		<ul class="navbar-nav nav nav-pills">
+		<% if(!currentuser){ %>
 		  <li class="nav-item ">
-			<a class="nav-link" href="/">Login </a>
+			<a class="nav-link" href="/login">Login </a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link" href="/">Sign Up</a>
+			<a class="nav-link" href="/register">Sign Up</a>
 		  </li>
+		<% }else{ %>
 		  <li class="nav-item">
-			<a class="nav-link" href="/">Log Out</a>
+			<a class="nav-link" href="/logout">Log Out</a>
 			</li>
+		  <li class="nav-item">
+			<a class="nav-link" href="/register">Signed in as <%= currentuser.username %> </a>
+		  </li>
+		<% } %>
 		</ul>
 		</div>
 	</div>
