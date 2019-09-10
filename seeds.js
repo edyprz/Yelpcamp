@@ -23,6 +23,7 @@ var data = [
 
 function seeddb(){
 	Campground.deleteMany({}, function(err){
+		
 		if(err){
 			console.log(err);
 		}
