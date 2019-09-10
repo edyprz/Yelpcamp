@@ -3,6 +3,7 @@ var express = require("express"),
 	  index = express(),
  bodyparser = require("body-parser"),
  mongoose   = require("mongoose"),
+	flash   = require("connect-flash"),	
 passport    = require("passport"),
 localstrategy = require("passport-local"),
 methodoverride = require("method-override"),
@@ -21,6 +22,7 @@ index.set("view engine","ejs");//para poder visualizar files.ejs
 index.use(bodyparser.urlencoded({extended:true}));//se hara uso del paquete bodyparser
 index.use(express.static(__dirname + "/public"));
 index.use(methodoverride("_method"));
+index.use(flash());
 //seeddb();
 
 //passport configuration
@@ -37,6 +39,8 @@ passport.deserializeUser(user.deserializeUser());
 
 index.use(function(req,res,next){
 	res.locals.currentuser = req.user;
+	res.locals.error = req.flash("error"); 
+	res.locals.succes = req.flash("succes"); 
 	next();
 });//nos permite acceder a currentuserr desde todas las rutas
 
